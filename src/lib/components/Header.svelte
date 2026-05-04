@@ -1,6 +1,5 @@
 <script lang="ts">
   import Logo from './Logo.svelte';
-  import LangSwitcher from './LangSwitcher.svelte';
   import type { Locale } from '$lib/i18n/locales';
   import type { Strings } from '$lib/i18n/strings';
 
@@ -22,8 +21,6 @@
       <a href={`${base}#team`}>{strings.nav.team}</a>
       <a href={`${base}#contact`}>{strings.nav.contact}</a>
     </nav>
-
-    <LangSwitcher current={lang} label={strings.nav.languageLabel} />
   </div>
 </header>
 
@@ -83,12 +80,6 @@
   @media (min-width: 720px) {
     .primary {
       display: flex;
-    }
-  }
-
-  @media (max-width: 719px) {
-    .header-inner :global(.lang) {
-      margin-left: auto;
     }
   }
 </style>

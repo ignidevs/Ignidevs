@@ -1,35 +1,35 @@
 [
   {
-    "id": "founder",
+    "id": "adam-hakansson",
     "name": "Adam Håkansson",
-    "role": { "en": "Founder · Engineering", "es": "Fundador · Ingeniería", "sv": "Grundare · Utveckling" },
-    "bio": {
-      "en": "Spent a decade shipping software inside large media orgs. Started Ignidevs to put that craft to work for the communities the big tools never reach.",
-      "es": "Una década entregando software en grandes medios. Fundó Ignidevs para poner ese oficio al servicio de las comunidades que las herramientas grandes no alcanzan.",
-      "sv": "Ett decennium av att leverera mjukvara på stora mediebolag. Startade Ignidevs för att ge det hantverket till communities som de stora verktygen aldrig når."
+    "role": {
+      "en": "Co-founder · Engineering",
+      "es": "Cofundador · Ingeniería",
+      "sv": "Medgrundare · Utveckling"
     },
-    "initials": "AH"
+    "bio": {
+      "en": "Software engineer at Bonnier News, Jönköping University alumnus. Spends his days shipping platforms for Sweden's largest news group and his evenings building the kind of focused tooling generic SaaS never quite gets right.",
+      "es": "Ingeniero de software en Bonnier News y graduado de Jönköping University. De día entrega plataformas para el mayor grupo de noticias de Suecia; de noche construye las herramientas específicas que el SaaS genérico nunca termina de acertar.",
+      "sv": "Mjukvaruingenjör på Bonnier News och alumn från Jönköping University. Bygger plattformar för Sveriges största nyhetskoncern på dagarna och de fokuserade verktyg som generiska SaaS aldrig riktigt får rätt på kvällarna."
+    },
+    "initials": "AH",
+    "location": "Sweden",
+    "linkedin": "https://www.linkedin.com/in/adam-håkansson-15942313a"
   },
   {
-    "id": "placeholder-2",
-    "name": "Your name here",
-    "role": { "en": "Design · Product", "es": "Diseño · Producto", "sv": "Design · Produkt" },
-    "bio": {
-      "en": "Placeholder card. Edit src/lib/data/team.json to swap in real teammates.",
-      "es": "Tarjeta de marcador. Edita src/lib/data/team.json para añadir compañeros reales.",
-      "sv": "Platshållarkort. Redigera src/lib/data/team.json för att lägga till riktiga lagkamrater."
+    "id": "anton-andresen",
+    "name": "Anton Andrésen",
+    "role": {
+      "en": "Co-founder · Tech & AI",
+      "es": "Cofundador · Tecnología e IA",
+      "sv": "Medgrundare · Teknik & AI"
     },
-    "initials": "??"
-  },
-  {
-    "id": "placeholder-3",
-    "name": "Your name here",
-    "role": { "en": "Engineering · Infra", "es": "Ingeniería · Infraestructura", "sv": "Utveckling · Infra" },
     "bio": {
-      "en": "Placeholder card. Edit src/lib/data/team.json to swap in real teammates.",
-      "es": "Tarjeta de marcador. Edita src/lib/data/team.json para añadir compañeros reales.",
-      "sv": "Platshållarkort. Redigera src/lib/data/team.json för att lägga till riktiga lagkamrater."
+      "en": "CTO at oriiion.ai and Jönköping University alumnus. Lives at the edge of AI and product, with a soft spot for the small communities the big platforms ignore. Favourite stack: Nuxt + Convex.",
+      "es": "CTO en oriiion.ai y graduado de Jönköping University. Se mueve en la frontera entre IA y producto, con debilidad por las comunidades pequeñas que las grandes plataformas ignoran. Stack favorito: Nuxt + Convex.",
+      "sv": "CTO på oriiion.ai och alumn från Jönköping University. Lever i gränslandet mellan AI och produkt, med ett extra öga för de små communities som de stora plattformarna missar. Favoritstack: Nuxt + Convex."
     },
-    "initials": "??"
+    "initials": "AA",
+    "location": "Jönköping, Sweden"
   }
 ]

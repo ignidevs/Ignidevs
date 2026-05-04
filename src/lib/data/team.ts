@@ -7,6 +7,8 @@ export type TeamMember = {
   role: Record<Locale, string>;
   bio: Record<Locale, string>;
   initials: string;
+  location?: string;
+  linkedin?: string;
 };
 
 export const team: TeamMember[] = teamData as TeamMember[];

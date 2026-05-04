@@ -27,21 +27,51 @@ test.describe('locale text', () => {
       await expect(page.getByRole('link', { name: new RegExp(copy.contactCta, 'i') })).toBeVisible();
     });
   }
+});
 
-  test('language switcher navigates between locales and preserves path', async ({ page }) => {
-    await page.goto('/en/');
-    await page.getByRole('link', { name: /SV/i }).first().click();
-    await expect(page).toHaveURL(/\/sv\/?$/);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('svåra problem');
-
-    await page.getByRole('link', { name: /ES/i }).first().click();
-    await expect(page).toHaveURL(/\/es\/?$/);
+test.describe('language detection (Accept-Language header)', () => {
+  test('Spanish browser is sent to /es/', async ({ browser }) => {
+    const ctx = await browser.newContext({ locale: 'es-ES' });
+    const page = await ctx.newPage();
+    const res = await page.goto('/');
+    expect(res?.ok()).toBe(true);
+    expect(page.url()).toMatch(/\/es\/?$/);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('problemas difíciles');
+    await ctx.close();
   });
 
-  test('current locale is marked aria-current in switcher', async ({ page }) => {
-    await page.goto('/es/');
-    const current = page.locator('nav[aria-label] a[aria-current="true"]').first();
-    await expect(current).toHaveText(/ES/);
+  test('Swedish browser is sent to /sv/', async ({ browser }) => {
+    const ctx = await browser.newContext({ locale: 'sv-SE' });
+    const page = await ctx.newPage();
+    const res = await page.goto('/');
+    expect(res?.ok()).toBe(true);
+    expect(page.url()).toMatch(/\/sv\/?$/);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('svåra problem');
+    await ctx.close();
+  });
+
+  test('English browser is sent to /en/', async ({ browser }) => {
+    const ctx = await browser.newContext({ locale: 'en-US' });
+    const page = await ctx.newPage();
+    const res = await page.goto('/');
+    expect(res?.ok()).toBe(true);
+    expect(page.url()).toMatch(/\/en\/?$/);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('hard problems');
+    await ctx.close();
+  });
+
+  test('Unsupported browser locale falls back to /en/', async ({ browser }) => {
+    const ctx = await browser.newContext({ locale: 'fr-FR' });
+    const page = await ctx.newPage();
+    const res = await page.goto('/');
+    expect(res?.ok()).toBe(true);
+    expect(page.url()).toMatch(/\/en\/?$/);
+    await ctx.close();
+  });
+
+  test('no manual language switcher is rendered', async ({ page }) => {
+    await page.goto('/en/');
+    const switchers = page.getByRole('navigation', { name: /language|idioma|språk/i });
+    await expect(switchers).toHaveCount(0);
   });
 });
