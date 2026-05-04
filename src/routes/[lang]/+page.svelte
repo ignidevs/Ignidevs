@@ -1,6 +1,9 @@
 <script lang="ts">
   import { team } from '$lib/data/team';
+  import { products } from '$lib/data/products';
   import { SITE } from '$lib/site';
+  import EmberDivider from '$lib/components/EmberDivider.svelte';
+  import Reveal from '$lib/components/Reveal.svelte';
 
   let { data } = $props();
   let lang = $derived(data.lang);
@@ -43,6 +46,56 @@
           <p>{item.body}</p>
         </li>
       {/each}
+    </ul>
+  </div>
+</section>
+
+<EmberDivider />
+
+<section class="section products-section" id="products" data-testid="products">
+  <div class="container">
+    <Reveal>
+      <span class="eyebrow">{strings.products.eyebrow}</span>
+      <h2>{strings.products.title}</h2>
+      <p class="section-lede">{strings.products.lede}</p>
+    </Reveal>
+
+    <ul class="products-grid">
+      {#each products as product, i}
+        <li>
+          <Reveal delay={120 + i * 80}>
+            <article class="product-card">
+              <header class="product-head">
+                <div class="product-name">
+                  <span class="product-mark" aria-hidden="true">
+                    <span class="dot"></span>
+                  </span>
+                  <span class="product-title">{product.name}</span>
+                </div>
+                <span class="status status-{product.status}">{product.statusLabel[lang]}</span>
+              </header>
+              <p class="tagline">{product.tagline[lang]}</p>
+              <p class="description">{product.description[lang]}</p>
+              <ul class="features">
+                {#each product.features[lang] as feature}
+                  <li>{feature}</li>
+                {/each}
+              </ul>
+              <a class="button" href={product.url} target="_blank" rel="noopener noreferrer">
+                {product.cta[lang]} ↗
+              </a>
+            </article>
+          </Reveal>
+        </li>
+      {/each}
+      <li class="more-soon" aria-hidden="true">
+        <Reveal delay={120 + products.length * 80}>
+          <div class="placeholder-card">
+            <span class="dashed"></span>
+            <p>{strings.products.moreSoon}</p>
+          </div>
+        </Reveal>
+      </li>
     </ul>
   </div>
 </section>
@@ -204,5 +257,162 @@
 
   .contact-section .cta-row {
     justify-content: center;
+  }
+
+  .products-section {
+    padding-top: var(--space-7);
+  }
+
+  .products-grid {
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 880px) {
+    .products-grid {
+      grid-template-columns: 1.6fr 1fr;
+    }
+  }
+
+  .product-card {
+    position: relative;
+    height: 100%;
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgba(255, 106, 31, 0.12), transparent 60%),
+      var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: var(--gradient-ember);
+    opacity: 0.85;
+  }
+
+  .product-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .product-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .product-mark {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gradient-ember);
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 24px rgba(255, 106, 31, 0.45);
+  }
+
+  .product-mark .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-fg);
+  }
+
+  .product-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    color: var(--accent-2);
+  }
+
+  .status-live {
+    background: rgba(255, 106, 31, 0.12);
+    border-color: var(--accent);
+    color: var(--accent-2);
+  }
+
+  .tagline {
+    font-size: 1.125rem;
+    color: var(--fg);
+    margin-bottom: var(--space-3);
+  }
+
+  .description {
+    color: var(--fg-muted);
+    margin-bottom: var(--space-5);
+  }
+
+  .features {
+    list-style: none;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .features li {
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gradient-ember);
+  }
+
+  .more-soon {
+    list-style: none;
+  }
+
+  .placeholder-card {
+    height: 100%;
+    min-height: 200px;
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--border-strong);
+    display: grid;
+    place-items: center;
+    color: var(--fg-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .placeholder-card p {
+    margin: 0;
   }
 </style>

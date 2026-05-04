@@ -27,6 +27,7 @@ test.describe('rendering smoke', () => {
         await expect(page.getByTestId('hero')).toBeVisible();
         await expect(page.getByTestId('mission')).toBeVisible();
         await expect(page.getByTestId('services')).toBeVisible();
+        await expect(page.getByTestId('products')).toBeVisible();
         await expect(page.getByTestId('team')).toBeVisible();
         await expect(page.getByTestId('contact')).toBeVisible();
         await expect(page.locator('h1')).toBeVisible();

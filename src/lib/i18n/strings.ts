@@ -31,6 +31,13 @@ export type Strings = {
     title: string;
     items: { title: string; body: string }[];
   };
+  products: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    moreSoon: string;
+    visit: string;
+  };
   team: {
     eyebrow: string;
     title: string;
@@ -94,6 +101,13 @@ const en: Strings = {
         body: 'Inherited a half-built product or a stalled team? We come in, untangle it, and ship the next milestone.'
       }
     ]
+  },
+  products: {
+    eyebrow: 'What we ship',
+    title: 'Products, not pitches.',
+    lede: 'We start with one. The next one is in the workshop.',
+    moreSoon: 'More on the way',
+    visit: 'Visit site'
   },
   team: {
     eyebrow: 'Team',
@@ -159,6 +173,13 @@ const es: Strings = {
       }
     ]
   },
+  products: {
+    eyebrow: 'Lo que enviamos',
+    title: 'Productos, no promesas.',
+    lede: 'Empezamos con uno. El siguiente ya está en el taller.',
+    moreSoon: 'Pronto vendrán más',
+    visit: 'Ir al sitio'
+  },
   team: {
     eyebrow: 'Equipo',
     title: 'Pequeños a propósito.',
@@ -222,6 +243,13 @@ const sv: Strings = {
         body: 'Ärvt en halvbyggd produkt eller ett team som kört fast? Vi kliver in, reder ut och levererar nästa milstolpe.'
       }
     ]
+  },
+  products: {
+    eyebrow: 'Det vi släpper',
+    title: 'Produkter, inte löften.',
+    lede: 'Vi börjar med en. Nästa ligger redan på verkstadsbänken.',
+    moreSoon: 'Fler på väg',
+    visit: 'Besök sajten'
   },
   team: {
     eyebrow: 'Team',
