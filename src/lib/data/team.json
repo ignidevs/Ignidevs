@@ -1,0 +1,35 @@
+[
+  {
+    "id": "founder",
+    "name": "Adam Håkansson",
+    "role": { "en": "Founder · Engineering", "es": "Fundador · Ingeniería", "sv": "Grundare · Utveckling" },
+    "bio": {
+      "en": "Spent a decade shipping software inside large media orgs. Started Ignidevs to put that craft to work for the communities the big tools never reach.",
+      "es": "Una década entregando software en grandes medios. Fundó Ignidevs para poner ese oficio al servicio de las comunidades que las herramientas grandes no alcanzan.",
+      "sv": "Ett decennium av att leverera mjukvara på stora mediebolag. Startade Ignidevs för att ge det hantverket till communities som de stora verktygen aldrig når."
+    },
+    "initials": "AH"
+  },
+  {
+    "id": "placeholder-2",
+    "name": "Your name here",
+    "role": { "en": "Design · Product", "es": "Diseño · Producto", "sv": "Design · Produkt" },
+    "bio": {
+      "en": "Placeholder card. Edit src/lib/data/team.json to swap in real teammates.",
+      "es": "Tarjeta de marcador. Edita src/lib/data/team.json para añadir compañeros reales.",
+      "sv": "Platshållarkort. Redigera src/lib/data/team.json för att lägga till riktiga lagkamrater."
+    },
+    "initials": "??"
+  },
+  {
+    "id": "placeholder-3",
+    "name": "Your name here",
+    "role": { "en": "Engineering · Infra", "es": "Ingeniería · Infraestructura", "sv": "Utveckling · Infra" },
+    "bio": {
+      "en": "Placeholder card. Edit src/lib/data/team.json to swap in real teammates.",
+      "es": "Tarjeta de marcador. Edita src/lib/data/team.json para añadir compañeros reales.",
+      "sv": "Platshållarkort. Redigera src/lib/data/team.json för att lägga till riktiga lagkamrater."
+    },
+    "initials": "??"
+  }
+]

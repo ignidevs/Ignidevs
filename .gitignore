@@ -1,0 +1,27 @@
+node_modules
+.DS_Store
+
+# build output
+.svelte-kit
+build
+dist
+.netlify
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# playwright
+test-results
+playwright-report
+playwright/.cache
