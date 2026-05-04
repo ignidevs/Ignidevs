@@ -28,6 +28,24 @@ test.describe('accessibility (axe-core, WCAG 2.1 AA)', () => {
     expect(focused).toMatch(/skip/i);
   });
 
+  test('content stays visible when JavaScript is disabled (no Reveal-stuck-hidden regression)', async ({ browser }) => {
+    const ctx = await browser.newContext({ javaScriptEnabled: false });
+    const page = await ctx.newPage();
+    await page.goto('/en/');
+    // The Products and Team sections both use Reveal wrappers; with JS off
+    // they must still render content visibly, not as opacity:0 ghosts.
+    const products = page.getByTestId('products');
+    await expect(products).toBeVisible();
+    await expect(products.getByText('Echo', { exact: true })).toBeVisible();
+    const team = page.getByTestId('team');
+    await expect(team).toBeVisible();
+    const opacity = await products.evaluate((el) =>
+      window.getComputedStyle(el).getPropertyValue('opacity')
+    );
+    expect(parseFloat(opacity)).toBe(1);
+    await ctx.close();
+  });
+
   test('all images and svg logos have accessible labels or aria-hidden', async ({ page }) => {
     await page.goto('/en/');
     const offenders = await page.evaluate(() => {

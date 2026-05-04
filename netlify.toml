@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Note: Content-Security-Policy is emitted by SvelteKit as a meta tag
+# (svelte.config.js -> kit.csp) so it can include hashes for the inline
+# boot script. Setting it as a header here would override and break
+# hydration.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -12,7 +16,6 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 
 [[headers]]
   for = "/_app/immutable/*"

@@ -5,20 +5,19 @@
   let { delay = 0, children }: Props = $props();
 
   let el: HTMLDivElement | null = $state(null);
-  let revealed = $state(false);
+  let phase: 'idle' | 'pre' | 'revealed' = $state('idle');
 
   onMount(() => {
     if (!el) return;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      revealed = true;
-      return;
-    }
+    if (reduce) return;
+
+    phase = 'pre';
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            window.setTimeout(() => (revealed = true), delay);
+            window.setTimeout(() => (phase = 'revealed'), delay);
             observer.disconnect();
           }
         }
@@ -30,20 +29,26 @@
   });
 </script>
 
-<div class="reveal" class:revealed bind:this={el}>
+<div
+  class="reveal"
+  class:pre={phase === 'pre'}
+  class:revealed={phase === 'revealed'}
+  bind:this={el}
+>
   {@render children?.()}
 </div>
 
 <style>
-  .reveal {
+  .reveal.pre {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .revealed {
+  .reveal.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   @media (prefers-reduced-motion: reduce) {

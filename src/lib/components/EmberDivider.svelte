@@ -2,20 +2,19 @@
   import { onMount } from 'svelte';
 
   let el: HTMLDivElement | null = $state(null);
-  let lit = $state(false);
+  let phase: 'idle' | 'pre' | 'lit' = $state('idle');
 
   onMount(() => {
     if (!el) return;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      lit = true;
-      return;
-    }
+    if (reduce) return;
+
+    phase = 'pre';
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            lit = true;
+            phase = 'lit';
             observer.disconnect();
           }
         }
@@ -27,7 +26,13 @@
   });
 </script>
 
-<div class="ember-divider" bind:this={el} class:lit aria-hidden="true">
+<div
+  class="ember-divider"
+  class:pre={phase === 'pre'}
+  class:lit={phase === 'lit'}
+  bind:this={el}
+  aria-hidden="true"
+>
   <span class="line"></span>
   <span class="spark"></span>
   <span class="line"></span>
@@ -52,17 +57,6 @@
       var(--border-strong) 50%,
       transparent
     );
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .ember-divider .line:first-child {
-    transform-origin: right;
-  }
-
-  .ember-divider .line:last-child {
-    transform-origin: left;
   }
 
   .spark {
@@ -70,16 +64,40 @@
     height: 10px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow:
-      0 0 0 0 rgba(255, 106, 31, 0.6),
-      0 0 24px 6px rgba(255, 106, 31, 0);
+    box-shadow: 0 0 30px 6px rgba(255, 106, 31, 0.35);
+  }
+
+  .pre .line {
+    transform: scaleX(0);
+    transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pre .line:first-child {
+    transform-origin: right;
+  }
+
+  .pre .line:last-child {
+    transform-origin: left;
+  }
+
+  .pre .spark {
     transform: scale(0);
+    box-shadow: 0 0 0 0 rgba(255, 106, 31, 0);
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s,
       box-shadow 1.6s ease-out 0.4s;
   }
 
   .lit .line {
     transform: scaleX(1);
+    transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pre.lit .line:first-child {
+    transform-origin: right;
+  }
+
+  .pre.lit .line:last-child {
+    transform-origin: left;
   }
 
   .lit .spark {
@@ -88,6 +106,8 @@
       0 0 0 0 rgba(255, 106, 31, 0),
       0 0 60px 12px rgba(255, 106, 31, 0.45);
     animation: ember-pulse 3.2s ease-in-out 1.5s infinite;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s,
+      box-shadow 1.6s ease-out 0.4s;
   }
 
   @keyframes ember-pulse {
@@ -105,12 +125,6 @@
       transition: none !important;
       animation: none !important;
       transform: none !important;
-    }
-    .ember-divider .line {
-      transform: scaleX(1) !important;
-    }
-    .spark {
-      transform: scale(1) !important;
     }
   }
 </style>
