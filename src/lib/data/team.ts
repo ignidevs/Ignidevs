@@ -9,6 +9,7 @@ export type TeamMember = {
   initials: string;
   location?: string;
   linkedin?: string;
+  personalSite?: string;
 };
 
 export const team: TeamMember[] = teamData as TeamMember[];

@@ -14,7 +14,8 @@
     },
     "initials": "AH",
     "location": "Sweden",
-    "linkedin": "https://www.linkedin.com/in/adam-håkansson-15942313a"
+    "linkedin": "https://www.linkedin.com/in/adam-håkansson-15942313a",
+    "personalSite": "https://adamhakansson.com"
   },
   {
     "id": "anton-andresen",
@@ -30,6 +31,7 @@
       "sv": "CTO på oriiion.ai och alumn från Jönköping University. Lever i gränslandet mellan AI och produkt, med ett extra öga för de små communities som de stora plattformarna missar. Favoritstack: Nuxt + Convex."
     },
     "initials": "AA",
-    "location": "Jönköping, Sweden"
+    "location": "Jönköping, Sweden",
+    "personalSite": "https://pogton.com"
   }
 ]

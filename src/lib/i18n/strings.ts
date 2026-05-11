@@ -48,7 +48,6 @@ export type Strings = {
     title: string;
     body: string;
     emailLabel: string;
-    bookCall: string;
   };
   footer: {
     tagline: string;
@@ -118,8 +117,7 @@ const en: Strings = {
     eyebrow: 'Contact',
     title: 'Got a niche problem worth solving?',
     body: 'Tell us about your community and what is in the way. We reply within two working days.',
-    emailLabel: 'Email us',
-    bookCall: 'Book a call'
+    emailLabel: 'Email us'
   },
   footer: {
     tagline: 'We light up hard problems.',
@@ -189,8 +187,7 @@ const es: Strings = {
     eyebrow: 'Contacto',
     title: '¿Tienes un problema específico que valga la pena resolver?',
     body: 'Cuéntanos sobre tu comunidad y lo que se interpone. Respondemos en menos de dos días hábiles.',
-    emailLabel: 'Escríbenos',
-    bookCall: 'Reserva una llamada'
+    emailLabel: 'Escríbenos'
   },
   footer: {
     tagline: 'Encendemos los problemas difíciles.',
@@ -260,8 +257,7 @@ const sv: Strings = {
     eyebrow: 'Kontakt',
     title: 'Har du ett nischat problem värt att lösa?',
     body: 'Berätta om din community och vad som står i vägen. Vi svarar inom två arbetsdagar.',
-    emailLabel: 'Mejla oss',
-    bookCall: 'Boka ett samtal'
+    emailLabel: 'Mejla oss'
   },
   footer: {
     tagline: 'Vi tänder gnistan i svåra problem.',

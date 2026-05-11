@@ -112,6 +112,16 @@
           <h3>{member.name}</h3>
           <p class="role">{member.role[lang]}</p>
           <p class="bio">{member.bio[lang]}</p>
+          {#if member.personalSite}
+            <a
+              class="personal-site"
+              href={member.personalSite}
+              target="_blank"
+              rel="noopener noreferrer me"
+            >
+              {member.personalSite.replace(/^https?:\/\//, '')} ↗
+            </a>
+          {/if}
         </li>
       {/each}
     </ul>
@@ -125,9 +135,6 @@
     <p>{strings.contact.body}</p>
     <div class="cta-row">
       <a class="button" href={`mailto:${SITE.email}`}>{strings.contact.emailLabel} →</a>
-      <a class="button secondary" href={SITE.calendly} rel="noopener noreferrer">
-        {strings.contact.bookCall}
-      </a>
     </div>
   </div>
 </section>
@@ -249,6 +256,22 @@
   .bio {
     color: var(--fg-muted);
     font-size: 0.95rem;
+  }
+
+  .personal-site {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-2);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s ease, color 0.18s ease;
+  }
+
+  .personal-site:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 
   .contact-section {
